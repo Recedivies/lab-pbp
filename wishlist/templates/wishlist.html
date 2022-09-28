@@ -1,22 +1,52 @@
 {% extends 'base.html' %} {% block content %}
-<h5>Nama:</h5>
-<p>{{nama}}</p>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{nama}}</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+      </ul>
+      <button class="mx-4">
+        <a class="navbar-text" href="{% url 'wishlist:logout' %}">Logout</a>
+      </button>
+    </div>
+  </div>
+</nav>
 
-<table>
-  <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-  </tr>
-  {% for barang in list_barang %}
-  <tr>
-    <th>{{barang.nama_barang}}</th>
-    <th>{{barang.harga_barang}}</th>
-    <th>{{barang.deskripsi}}</th>
-  </tr>
-  {% endfor %}
-</table>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+<div class="table-responsive w-75 mx-auto text-center">
+  <h4>Wishlist Table</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nama Barang</th>
+        <th scope="col">Harga Barang</th>
+        <th scope="col">Deskripsi</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for barang in list_barang %}
+      <tr>
+        <th>{{barang.nama_barang}}</th>
+        <th>{{barang.harga_barang}}</th>
+        <th>{{barang.deskripsi}}</th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <h5>Sesi terakhir login: {{ last_login }}</h5>
+</div>
 
 {% endblock content %}
